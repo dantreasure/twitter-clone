@@ -73,7 +73,7 @@ textarea.tweet-compose {
 	display: inline-block;
 }
 
-.tweet-controls button {
+.dashboard-tweet-button {
 	color: #777;
 	text-shadow: 0 1px 1px rgba(255,255,255,.75);
 	cursor: default;
@@ -88,6 +88,14 @@ textarea.tweet-compose {
 	padding: 5px 10px;
 	font-size: 13px;
 	font-weight: bold;
+}
+.tweet-ready {
+	color: #fff;
+    background-color: #019ad2;  
+    border-color: #057ed0;
+    background-image: linear-gradient(rgb(51, 188, 239), rgb(1, 154, 210));
+    text-shadow: 0 -1px 1px rgba(0,0,0,.25);
+
 }
 
 .char-count {

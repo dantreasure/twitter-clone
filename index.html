@@ -1,6 +1,8 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="styles.css" type="text/css" />
+		<script language="javascript" type="text/javascript" src="jquery-2.0.3.js" ></script>
+		<script language="javascript" type="text/javascript" src="javascript.js"></script>
 	</head>
 	<body>
 		<div class="page-container">
@@ -12,10 +14,11 @@
 					</div>
 				</div>
 				<div class="tweet-content">
-					<textarea class="tweet-compose" placeholder="Compose new Tweet..."/></textarea>
+					<textarea class="tweet-compose" id="countable" placeholder="Compose new Tweet..." onkeyup="countChar(this)"/></textarea>
+
 					<div class="tweet-controls">
-						<div class="char-count">140</div>
-						<button>Tweet</button>
+						<div id="char-count">140</div>
+						<button class="dashboard-tweet-button" onclick="tweetClick(this)">Tweet</button>
 					</div>
 				</div>
 			</div>
