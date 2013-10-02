@@ -1,12 +1,13 @@
+//  Global Variables  //
+
 var tweetReady = false;
+var dashboardTweetButton = $('.dashboard-tweet-button');
 
 // Character counting function for dashboard tweet controls  //
 function countChar(val) {
     //  Define variables used  //
     var charCount = $('#char-count');
-    var dashboardTweetButton = $('.dashboard-tweet-button');
     var len = val.value.length;
-    
     charCount.text(140 - len);
     
     if (len < 1){
@@ -47,9 +48,23 @@ $(document).ready(function(){
     //  If the tweet is ready, send tweet to stream  //
     dashboardTweetButton.click(function(){
         var dashboardPic = $('#dashboard-pic');
-        if (tweetReady){ 
-            $('div.stream').prepend("<div class='tweet'><div class='content'><script></script><strong class='fullname'>My BFF</strong><span class='username'>@mybff</span><p class='tweet-text'>Today is an amazing day.</p><div class='tweet-actions'><ul><li><span class='icon action-reply'></span> Reply</li><li><span class='icon action-retweet'></span> Retweet</li><li><span class='icon action-favorite'></span> Favorite</li><li><span class='icon action-more'></span> More</li></ul></div><div class='stats'><div class='retweets'><p class='num-retweets'>30</p><p>RETWEETS</p></div><div class='favorites'><p class='num-favorites'>6</p><p>FAVORITES</p></div><div class='users-interact'><div><img src='https://si0.twimg.com/profile_images/378800000440426100/9e19b57a0794bc7d78b7e8c0909d0a76_normal.jpeg' /><img src='https://si0.twimg.com/profile_images/718418316/b_normal.jpg' /></div></div><div class='time>1:04 PM - 19 Sep 13</div></div><div class='reply'><img class='avatar' src='https://si0.twimg.com/profile_images/1482831577/vendetta_headshot.jpg' /><textarea class='tweet-compose' placeholder='Reply to @mybff'/></textarea></div></div></div>");    
-        };
+        // tv.tweetContent = $('textarea.tweet-compose').val();
+        if (tweetReady){
+            var tv = new TweetView(
+                {
+                    model: new Tweet({
+                    avatar: 'https://si0.twimg.com/profile_images/1482831577/vendetta_headshot.jpg',
+                    fullName: $('#myName').html(),
+                    userName: '@dantreasure',
+                    tweetContent: $('textarea.tweet-compose').val(),
+                    numRetweets: '0',
+                    numFavorites: '0',
+                    favoritees: '',
+                    time: '12:00am',
+                })
+              }
+            );
+            tv.render();};
     });
    
     //  Hide the dashboard's tweet box & controls on load  //
@@ -75,4 +90,24 @@ $(document).ready(function(){
     });
 });
 
-    
+// Backbone  //
+var Tweet = Backbone.Model.extend({
+  defaults: {
+    avatar: '',
+    fullName: '',
+    userName: '',
+    tweetContent: '',
+    numRetweets: '',
+    numFavorites: '',
+    favoritees: '',
+    time: '',
+  }
+});
+
+var TweetView = Backbone.View.extend({
+  el: '.tweets',
+  template: _.template($('#single-tweet-template').html()),
+  render: function() {
+    this.$el.prepend(this.template(this.model.toJSON()));
+  }
+});
