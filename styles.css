@@ -97,11 +97,18 @@ textarea.tweet-compose {
     text-shadow: 0 -1px 1px rgba(0,0,0,.25);
 
 }
+.tweet-ready-hover {
+	color: #fff;
+    background-color: #0271bf;  
+    /*border-color: #057ed0;
+    background-image: linear-gradient(rgb(51, 188, 239), rgb(1, 154, 210));
+    text-shadow: 0 -1px 1px rgba(0,0,0,.25);*/
 
-.char-count {
-	font-size: 14px;
-	color: #999;
-	text-shadow: 0 1px 1px rgba(255,255,255,.75);
+}
+#char-count {
+	font-size: 13px;
+	color: red;
+	text-shadow: 0 1px 1px rgba(255,255,255,.75)
 }
 
 .main {
